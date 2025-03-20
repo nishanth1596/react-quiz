@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { QuizState } from "../../types/types";
 
 const initialState: QuizState = {
-  currentQuestionIndex: 0,
+  status: "ready",
+  currentQuestionIndex: 9,
   points: 0,
 
   currentTitle: "",
@@ -12,6 +13,7 @@ const initialState: QuizState = {
   isUserSelectedOptionCorrect: null,
   isAnswerSubmitted: false,
   correctAnswerOption: undefined,
+  isAnswerSubmittedWithoutSelectingOption: false,
 };
 
 const quizSlice = createSlice({
@@ -19,6 +21,8 @@ const quizSlice = createSlice({
   initialState,
   reducers: {
     selectTitle(state, action) {
+      Object.assign(state, initialState);
+      state.status = "started";
       state.currentTitle = action.payload.title;
       state.color = action.payload.color;
       state.img = action.payload.img;
@@ -42,17 +46,54 @@ const quizSlice = createSlice({
       }
 
       state.isAnswerSubmitted = true;
+      state.isAnswerSubmittedWithoutSelectingOption = false;
+    },
+
+    noAnswerSelected(state) {
+      state.isAnswerSubmittedWithoutSelectingOption = true;
     },
 
     nextQuestion(state) {
+      if (state.status !== "ready") return state;
+
       state.currentQuestionIndex++;
       state.isAnswerSubmitted = false;
       state.correctAnswerOption = undefined;
+      state.isUserSelectedOptionCorrect = null;
+    },
+
+    lastQuestion(state, action) {
+      const { correctAnswerOption, userSelectedOption } = action.payload;
+
+      state.isUserSelectedOptionCorrect =
+        correctAnswerOption === userSelectedOption;
+
+      if (state.isUserSelectedOptionCorrect) {
+        state.points++;
+        state.correctAnswerOption = correctAnswerOption;
+      }
+
+      state.isAnswerSubmitted = true;
+      state.isAnswerSubmittedWithoutSelectingOption = false;
+
+      // Mark the quiz as completed
+      state.status = "completed";
+    },
+
+    playAgain() {
+      return initialState;
     },
   },
 });
 
-export const { nextQuestion, selectTitle, selectOption } = quizSlice.actions;
+export const {
+  nextQuestion,
+  selectTitle,
+  selectOption,
+  noAnswerSelected,
+  lastQuestion,
+  playAgain,
+} = quizSlice.actions;
 export default quizSlice.reducer;
 
 export const getisAnswerSubmitted = (store) => store.quiz.isAnswerSubmitted;
@@ -61,3 +102,10 @@ export const getCurrentQuestionIndex = (store) =>
   store.quiz.currentQuestionIndex;
 
 export const getPoints = (store) => store.quiz.points;
+
+export const getIsNoAnswerSelected = (store) =>
+  store.quiz.isAnswerSubmittedWithoutSelectingOption;
+
+export const getStatus = (store) => store.quiz.status;
+
+export const getTitle = (store) => store.quiz.currentTitle;

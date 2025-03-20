@@ -28,29 +28,28 @@ export type QuizQuestionProp = {
   questionData: QuestionProp[];
 };
 
-export type QuizPageProps = {
-  title?: string;
-};
-
 export type OptionButtonItemProps = {
   optionLabel: string;
   option: string;
   index: number;
   onClick: (index: number) => void;
   isOptionSelected: boolean;
-  isSubmitted: boolean;
-  isOptionCorrect?: boolean;
-  isOptionIncorrect?: boolean;
+  isAnswerSubmitted: boolean;
+  isOptionCorrect: boolean;
+  isOptionIncorrect: boolean;
+  correctAnswerOption: number;
 };
 
 export type OptionButtonProps = {
   options: string[];
-  onClick: () => void;
-  selectedOptionIndex: number;
-  isSubmitted: boolean;
+  onClick: (id: number) => void;
+  selectedOptionIndex: number | undefined;
+  isAnswerSubmitted: boolean;
+  correctAnswerOption: number;
 };
 
 export type QuizState = {
+  status: string;
   currentQuestionIndex: number;
   points: number;
 
@@ -61,6 +60,7 @@ export type QuizState = {
   isUserSelectedOptionCorrect: boolean | null;
   isAnswerSubmitted: boolean;
   correctAnswerOption: number | undefined;
+  isAnswerSubmittedWithoutSelectingOption: boolean;
 };
 
 export type TitlePayLoad = {
@@ -72,4 +72,8 @@ export type TitlePayLoad = {
 export type OptionPayLoad = {
   correctOption: string;
   userOption: string;
+};
+
+export type ProgressBarProps = {
+  progress: number;
 };

@@ -1,18 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchQuizData } from "../../services/quizData";
+import { useSelector } from "react-redux";
+import { useQuestionData } from "../../services/useQuestionData";
+
+import { getTitle } from "./quizSlice";
+
 import Loader from "../../ui/Loader";
 import QuizQuestion from "./QuizQuestion";
-import { QuizItemProp, QuizPageProps } from "../../types/types";
 
-function QuizPage({ title }: QuizPageProps) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["quizData"],
-    queryFn: fetchQuizData,
-  });
-
-  const questionData = data?.quizzes.find(
-    (item: QuizItemProp) => item.title === title,
-  ).questions;
+function QuizPage() {
+  const title = useSelector(getTitle);
+  const { questionData, isLoading } = useQuestionData(title);
 
   return (
     <section className="relative">

@@ -5,7 +5,8 @@ function OptionButton({
   options,
   onClick,
   selectedOptionIndex,
-  isSubmitted,
+  isAnswerSubmitted,
+  correctAnswerOption,
 }: OptionButtonProps) {
   return (
     <div className="mt-10 space-y-3">
@@ -16,8 +17,17 @@ function OptionButton({
           key={index}
           onClick={onClick}
           index={index}
+          isAnswerSubmitted={isAnswerSubmitted}
           isOptionSelected={selectedOptionIndex === index}
-          isSubmitted={isSubmitted}
+          isOptionCorrect={
+            selectedOptionIndex === index &&
+            selectedOptionIndex === correctAnswerOption
+          }
+          isOptionIncorrect={
+            selectedOptionIndex === index &&
+            selectedOptionIndex !== correctAnswerOption
+          }
+          correctAnswerOption={correctAnswerOption}
         />
       ))}
     </div>

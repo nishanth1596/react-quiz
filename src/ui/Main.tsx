@@ -1,12 +1,19 @@
 import { useSelector } from "react-redux";
 import QuizPage from "../feature/Quiz/QuizPage";
 import TopicPage from "../feature/TopicPage";
-import { RootState } from "../store";
+import { getStatus } from "../feature/Quiz/quizSlice";
+import ResultPage from "../feature/ResultPage";
 
 function Main() {
-  const title = useSelector((store: RootState) => store.quiz.currentTitle);
+  const status = useSelector(getStatus);
 
-  return <main>{title ? <QuizPage title={title} /> : <TopicPage />}</main>;
+  return (
+    <main>
+      {status === "ready" && <TopicPage />}
+      {status === "started" && <QuizPage />}
+      {status === "completed" && <ResultPage />}
+    </main>
+  );
 }
 
 export default Main;
