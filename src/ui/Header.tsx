@@ -39,7 +39,7 @@ function Header() {
         {title ? (
           <IconTitle color={color} img={img} title={title} />
         ) : (
-          <div className="invisible h-10 w-10 p-1.5"></div>
+          <span className="invisible h-10 w-10 p-1.5"></span>
         )}
       </output>
 
