@@ -11,7 +11,7 @@ function TitleItems({ item }: TitleItemsProps) {
     <button
       onClick={() => dispatch(selectTitle(item))}
       aria-label={`Select ${item.title} category`}
-      className="dropShadow bg-PureWhite flex w-full cursor-pointer items-center gap-4 p-3"
+      className="dropShadow bg-PureWhite dark:bg-Navy flex w-full cursor-pointer items-center gap-4 rounded-xl p-3 hover:mx-4"
     >
       <IconTitle img={img} title={title} color={color} />
     </button>

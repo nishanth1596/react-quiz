@@ -21,7 +21,7 @@ function TopicPage() {
       <h1 className="text-[2.5rem] leading-[100%] font-light">
         Welcome to the <span className="font-medium">Frontend Quiz!</span>
       </h1>
-      <h2 className="text-GreyNavy mt-4 text-sm leading-[1.5] italic">
+      <h2 className="text-GreyNavy dark:text-LighBluish mt-4 text-sm leading-[1.5] italic">
         Pick a subject to get started.
       </h2>
 

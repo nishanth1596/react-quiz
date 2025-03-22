@@ -45,9 +45,11 @@ function OptionButtonItem({
     <button
       disabled={isAnswerSubmitted}
       onClick={() => onClick(index)}
-      className={`${currentClass} ${isAnswerSubmitted ? "cursor-not-allowed" : "cursor-pointer"} `}
+      className={`${currentClass} ${isAnswerSubmitted ? "cursor-not-allowed" : "cursor-pointer"} dark:bg-Navy dark:text-PureWhite transition-all duration-300 ease-in-out hover:mx-4`}
     >
-      <span className="text-GreyNavy bg-LightGrey rounded-md px-3.5 py-3">
+      <span
+        className={`text-GreyNavy bg-LightGrey mr-4 rounded-md px-3.5 py-3 ${isOptionSelected && !isAnswerSubmitted && "dark:bg-Purple dark:text-PureWhite"} ${isAnswerSubmitted && isOptionCorrect && "dark:bg-Green dark:text-PureWhite"} ${isAnswerSubmitted && isOptionIncorrect && "dark:bg-Red dark:text-PureWhite"}`}
+      >
         {optionLabel}
       </span>
       {option}

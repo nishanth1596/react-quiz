@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { QuizState } from "../../types/types";
 
 const initialState: QuizState = {
+  theme: "light",
+
   status: "ready",
   currentQuestionIndex: 9,
   points: 0,
@@ -62,26 +64,18 @@ const quizSlice = createSlice({
       state.isUserSelectedOptionCorrect = null;
     },
 
-    lastQuestion(state, action) {
-      const { correctAnswerOption, userSelectedOption } = action.payload;
-
-      state.isUserSelectedOptionCorrect =
-        correctAnswerOption === userSelectedOption;
-
-      if (state.isUserSelectedOptionCorrect) {
-        state.points++;
-        state.correctAnswerOption = correctAnswerOption;
-      }
-
-      state.isAnswerSubmitted = true;
-      state.isAnswerSubmittedWithoutSelectingOption = false;
-
+    lastQuestion(state) {
       // Mark the quiz as completed
       state.status = "completed";
     },
 
-    playAgain() {
-      return initialState;
+    playAgain(state) {
+      return { ...initialState, theme: state.theme };
+    },
+
+    toggleTheme(state, action) {
+      state.theme = action.payload;
+      state.theme = action.payload === true ? "dark" : "light";
     },
   },
 });
@@ -93,6 +87,7 @@ export const {
   noAnswerSelected,
   lastQuestion,
   playAgain,
+  toggleTheme,
 } = quizSlice.actions;
 export default quizSlice.reducer;
 
@@ -109,3 +104,5 @@ export const getIsNoAnswerSelected = (store) =>
 export const getStatus = (store) => store.quiz.status;
 
 export const getTitle = (store) => store.quiz.currentTitle;
+
+export const getTheme = (store) => store.quiz.theme;

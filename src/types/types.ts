@@ -49,6 +49,8 @@ export type OptionButtonProps = {
 };
 
 export type QuizState = {
+  theme: string;
+
   status: string;
   currentQuestionIndex: number;
   points: number;
