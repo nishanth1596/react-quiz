@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { QuizState } from "../../types/types";
+import { RootState } from "../../store";
 
 const initialState: QuizState = {
   theme: "light",
@@ -91,18 +92,21 @@ export const {
 } = quizSlice.actions;
 export default quizSlice.reducer;
 
-export const getisAnswerSubmitted = (store) => store.quiz.isAnswerSubmitted;
+export const getisAnswerSubmitted = (store: RootState) =>
+  store.quiz.isAnswerSubmitted;
 
-export const getCurrentQuestionIndex = (store) =>
+export const getCurrentQuestionIndex = (store: RootState) =>
   store.quiz.currentQuestionIndex;
 
-export const getPoints = (store) => store.quiz.points;
+export const getPoints = (store: RootState) => store.quiz.points;
 
-export const getIsNoAnswerSelected = (store) =>
+export const getIsNoAnswerSelected = (store: RootState) =>
   store.quiz.isAnswerSubmittedWithoutSelectingOption;
 
-export const getStatus = (store) => store.quiz.status;
+export const getStatus = (store: RootState) => store.quiz.status;
 
-export const getTitle = (store) => store.quiz.currentTitle;
+export const getTitle = (store: RootState) => store.quiz.currentTitle;
 
-export const getTheme = (store) => store.quiz.theme;
+export const getTheme = (store: RootState) => store.quiz.theme;
+
+export const getStore = (store: RootState) => store.quiz;

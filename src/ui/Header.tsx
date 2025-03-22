@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { getTheme, toggleTheme } from "../feature/Quiz/quizSlice";
 
-import { RootState } from "../store";
+import { AppDispatch, RootState } from "../store";
 import ThemeButton from "./ThemeButton";
 import IconTitle from "./IconTitle";
 
@@ -13,9 +13,9 @@ import sunDarkIcon from "/icon-sun-dark.svg";
 import sunLightIcon from "/icon-sun-light.svg";
 
 function Header() {
-  const titleData = useSelector((store: RootState) => store.quiz);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const dispatch = useDispatch();
+  const titleData = useSelector((store: RootState) => store.quiz);
   const theme = useSelector(getTheme);
 
   const isChecked = theme === "light" ? true : false;
@@ -29,7 +29,7 @@ function Header() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  function handleCheckBox(e) {
+  function handleCheckBox(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(toggleTheme(e.target.checked));
   }
 

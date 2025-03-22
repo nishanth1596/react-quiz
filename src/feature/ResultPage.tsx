@@ -1,13 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getPoints, playAgain } from "./Quiz/quizSlice";
+import { getPoints, getStore, playAgain } from "./Quiz/quizSlice";
 import { useQuestionData } from "../services/useQuestionData";
 
 function ResultPage() {
-  const {
-    currentTitle: title,
-    img,
-    color,
-  } = useSelector((store) => store.quiz);
+  const { currentTitle: title, img, color } = useSelector(getStore);
 
   const dispatch = useDispatch();
 
