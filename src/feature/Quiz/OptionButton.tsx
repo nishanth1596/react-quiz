@@ -9,7 +9,7 @@ function OptionButton({
   correctAnswerOption,
 }: OptionButtonProps) {
   return (
-    <div className="mt-10 space-y-3">
+    <div className="mt-10 space-y-3 md:mt-16 md:space-y-6 lg:mt-0">
       {options.map((item, index) => (
         <OptionButtonItem
           optionLabel={String.fromCharCode(65 + index)}

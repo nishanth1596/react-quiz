@@ -34,8 +34,8 @@ function Header() {
   }
 
   return (
-    <header className="mx-6 my-4 flex items-center justify-between">
-      <output className="flex items-center gap-4">
+    <header className="mx-6 my-4 flex items-center justify-between md:mx-16 md:mt-14 md:mb-0 xl:mx-36 xl:mt-[6.06rem]">
+      <output className="flex items-center gap-4 md:gap-6">
         {title ? (
           <IconTitle color={color} img={img} title={title} />
         ) : (
@@ -43,7 +43,7 @@ function Header() {
         )}
       </output>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 md:gap-4">
         <ThemeButton
           onClick={() => dispatch(toggleTheme(false))}
           ariaLabel="Click to change Light theme"
@@ -61,7 +61,7 @@ function Header() {
           <label
             aria-label="click to toggle between light and dark theme"
             htmlFor="toggle"
-            className="bg-Purple before:bg-PureWhite relative inline-block h-5 w-8 cursor-pointer rounded-full before:absolute before:m-1 before:h-3 before:w-3 before:rounded-full before:transition-all before:duration-300 before:ease-in-out peer-checked:before:translate-x-3"
+            className="bg-Purple before:bg-PureWhite relative inline-block h-5 w-8 cursor-pointer rounded-full before:absolute before:m-1 before:h-3 before:w-3 before:rounded-full before:transition-all before:duration-300 before:ease-in-out peer-checked:before:translate-x-3 md:h-7 md:w-12 md:before:h-5 md:before:w-5 md:peer-checked:before:translate-x-5"
           ></label>
         </div>
 

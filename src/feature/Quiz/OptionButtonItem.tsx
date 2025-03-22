@@ -3,7 +3,7 @@ import correctIcon from "/icon-correct.svg";
 import incorrectIcon from "/icon-incorrect.svg";
 
 const buttonClass = {
-  base: "text-DarkNavy bg-PureWhite flex w-full  items-center gap-1.5 rounded-xl p-3 text-left text-lg leading-[1] font-medium transition-colors duration-300 ease-in dropShadow relative ",
+  base: "text-DarkNavy bg-PureWhite flex w-full  items-center gap-4 md:gap-8 rounded-xl md:rounded-3xl p-3 lg:px-5 lg:py-[1.125rem] text-left text-lg md:text-[1.75rem] leading-[1] font-medium transition-colors duration-300 ease-in dropShadow relative  ",
   activeClass: "activeBtn ",
   userOptionCorrect: "border-Green border-[3px] ",
   userOptionIncorrect: "border-Red border-[3px] ",
@@ -48,7 +48,7 @@ function OptionButtonItem({
       className={`${currentClass} ${isAnswerSubmitted ? "cursor-not-allowed" : "cursor-pointer"} dark:bg-Navy dark:text-PureWhite transition-all duration-300 ease-in-out hover:mx-4`}
     >
       <span
-        className={`text-GreyNavy bg-LightGrey mr-4 rounded-md px-3.5 py-3 ${isOptionSelected && !isAnswerSubmitted && "dark:bg-Purple dark:text-PureWhite"} ${isAnswerSubmitted && isOptionCorrect && "dark:bg-Green dark:text-PureWhite"} ${isAnswerSubmitted && isOptionIncorrect && "dark:bg-Red dark:text-PureWhite"}`}
+        className={`${!isOptionSelected && !isOptionCorrect && !isOptionIncorrect && "text-GreyNavy bg-LightGrey"} rounded-md px-3.5 py-3 md:rounded-xl md:px-[18px] md:py-3.5 ${isOptionSelected && !isAnswerSubmitted && "bg-Purple text-PureWhite"} ${isAnswerSubmitted && isOptionCorrect && "bg-Green text-PureWhite"} ${isAnswerSubmitted && isOptionIncorrect && "bg-Red text-PureWhite"}`}
       >
         {optionLabel}
       </span>

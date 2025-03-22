@@ -55,39 +55,45 @@ function QuizQuestion({ questionData }: QuizQuestionProp) {
   }
 
   return (
-    <article className="mx-6 mt-8 mb-64">
-      <h3 className="text-GreyNavy dark:text-LighBluish text-sm leading-[1.5] italic">
-        Questions {currentQuestionIndex + 1} of {numQuestions}
-      </h3>
-      <h4 className="text-DarkNavy dark:text-PureWhite mt-3 text-xl leading-[1.2] font-medium">
-        {question}
-      </h4>
+    <article className="mx-6 mt-8 mb-64 md:mx-16 md:mt-12 lg:mt-16 lg:grid lg:grid-cols-2 lg:gap-x-8 xl:mx-[8.75rem] xl:mt-[5.31rem] xl:gap-x-[8.19rem]">
+      <div className="lg:flex lg:flex-col lg:justify-between">
+        <div>
+          <h3 className="text-GreyNavy dark:text-LighBluish text-sm leading-[1.5] italic md:text-xl">
+            Questions {currentQuestionIndex + 1} of {numQuestions}
+          </h3>
+          <h4 className="text-DarkNavy dark:text-PureWhite mt-3 text-xl leading-[1.2] font-medium md:mt-7 md:text-4xl">
+            {question}
+          </h4>
+        </div>
 
-      <ProgressBar progress={currentQuestionIndex / numQuestions} />
+        <ProgressBar progress={currentQuestionIndex / numQuestions} />
+      </div>
 
-      <OptionButton
-        options={options}
-        onClick={handleSelectOption}
-        selectedOptionIndex={selectedOptionIndex}
-        isAnswerSubmitted={isAnswerSubmitted}
-        correctAnswerOption={correctAnswerOption}
-      />
+      <div>
+        <OptionButton
+          options={options}
+          onClick={handleSelectOption}
+          selectedOptionIndex={selectedOptionIndex}
+          isAnswerSubmitted={isAnswerSubmitted}
+          correctAnswerOption={correctAnswerOption}
+        />
 
-      <button
-        onClick={isAnswerSubmitted ? handleNextQuestion : handleSubmitAnswer}
-        className="bg-Purple text-PureWhite mt-8 w-full cursor-pointer rounded-xl py-5 text-lg leading-[1] font-medium transition-all duration-300 hover:opacity-50"
-      >
-        {isAnswerSubmitted ? "Next Question" : "Submit Answer"}
-      </button>
+        <button
+          onClick={isAnswerSubmitted ? handleNextQuestion : handleSubmitAnswer}
+          className="bg-Purple text-PureWhite mt-8 w-full cursor-pointer rounded-xl py-5 text-lg leading-[1] font-medium transition-all duration-300 hover:opacity-50 md:py-8 md:text-[1.75rem] lg:rounded-3xl"
+        >
+          {isAnswerSubmitted ? "Next Question" : "Submit Answer"}
+        </button>
 
-      {isNoAnswerSelected && (
-        <p className="mt-8 flex items-center justify-center gap-2">
-          <img src="/icon-incorrect.svg" alt="" />{" "}
-          <span className="text-Red dark:text-PureWhite text-lg leading-6 font-normal">
-            Please select an answer
-          </span>
-        </p>
-      )}
+        {isNoAnswerSelected && (
+          <p className="mt-8 flex items-center justify-center gap-2">
+            <img src="/icon-incorrect.svg" alt="" />{" "}
+            <span className="text-Red dark:text-PureWhite text-lg leading-6 font-normal md:text-2xl">
+              Please select an answer
+            </span>
+          </p>
+        )}
+      </div>
     </article>
   );
 }
