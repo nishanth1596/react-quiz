@@ -6,7 +6,7 @@ const initialState: QuizState = {
   theme: "light",
 
   status: "ready",
-  currentQuestionIndex: 0,
+  currentQuestionIndex: 9,
   points: 0,
 
   currentTitle: "",
@@ -57,7 +57,7 @@ const quizSlice = createSlice({
     },
 
     nextQuestion(state) {
-      if (state.status !== "ready") return state;
+      if (state.status !== "started") return state;
 
       state.currentQuestionIndex++;
       state.isAnswerSubmitted = false;

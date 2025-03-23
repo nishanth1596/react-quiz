@@ -30,6 +30,7 @@ function QuizQuestion({ questionData }: QuizQuestionProp) {
 
   const numQuestions = questionData.length;
   const { question, options, answer } = questionData[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === numQuestions - 1;
 
   const correctAnswerOption = options.indexOf(answer);
   const userSelectedOption = selectedOptionIndex;
@@ -39,7 +40,7 @@ function QuizQuestion({ questionData }: QuizQuestionProp) {
   }
 
   function handleNextQuestion() {
-    if (numQuestions === currentQuestionIndex + 1) {
+    if (isLastQuestion) {
       dispatch(lastQuestion());
       return;
     }
@@ -82,7 +83,11 @@ function QuizQuestion({ questionData }: QuizQuestionProp) {
           onClick={isAnswerSubmitted ? handleNextQuestion : handleSubmitAnswer}
           className="bg-Purple text-PureWhite mt-8 w-full cursor-pointer rounded-xl py-5 text-lg leading-[1] font-medium transition-all duration-300 hover:opacity-50 md:py-8 md:text-[1.75rem] lg:rounded-3xl"
         >
-          {isAnswerSubmitted ? "Next Question" : "Submit Answer"}
+          {isLastQuestion
+            ? "Finish Quiz"
+            : isAnswerSubmitted
+              ? "Next Question"
+              : "Submit Answer"}
         </button>
 
         {isNoAnswerSelected && (
