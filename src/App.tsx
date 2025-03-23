@@ -8,7 +8,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="w-full">
+      <div className="mx-auto w-full max-w-[90rem]">
         <Header />
         <Main />
       </div>
