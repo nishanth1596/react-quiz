@@ -3,7 +3,7 @@ import correctIcon from "/icon-correct.svg";
 import incorrectIcon from "/icon-incorrect.svg";
 
 const buttonClass = {
-  base: "text-DarkNavy bg-PureWhite flex w-full  items-center gap-4 md:gap-8 rounded-xl md:rounded-3xl p-3 lg:px-5 lg:py-[1.125rem] text-left text-lg md:text-[1.75rem] leading-[1] font-medium transition-colors duration-300 ease-in dropShadow relative  ",
+  base: "text-DarkNavy bg-PureWhite flex w-full  items-center gap-4 md:gap-8 rounded-xl md:rounded-3xl p-3 pr-11 lg:px-5 lg:py-[1.125rem] text-left text-lg md:text-[1.75rem] leading-[1] font-medium transition-colors duration-300 ease-in dropShadow relative  ",
   activeClass: "activeBtn ",
   userOptionCorrect: "border-Green border-[3px] ",
   userOptionIncorrect: "border-Red border-[3px] ",
