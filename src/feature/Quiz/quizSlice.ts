@@ -6,7 +6,7 @@ const initialState: QuizState = {
   theme: "light",
 
   status: "ready",
-  currentQuestionIndex: 9,
+  currentQuestionIndex: 0,
   points: 0,
 
   currentTitle: "",
