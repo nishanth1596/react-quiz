@@ -6,11 +6,15 @@
   --color-Purple: #a729f5;
   --color-PurpleHalfWhite: #a729f5;
   --color-DarkNavy: #313e51;
+  /* dark theme color - darkNavy */
+
   --color-Navy: #3b4d66;
   --color-GreyNavy: #626c7f;
   --color-LighBluish: #abc1e1;
   --color-LightGrey: #f4f6fa;
   --color-PureWhite: #ffffff;
+  /* light theme color */
+
   --color-Green: #26d782;
   --color-Red: #ee5454;
   --color-htmlIconBg: #fff1e9;
@@ -33,5 +37,49 @@
   .activeSpan {
     background-color: var(--color-Purple);
     color: var(--color-PureWhite);
+  }
+}
+
+body {
+  /* background-image: url('../public/pattern-background-mobile-dark.svg'); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-family: "Rubik", sans-serif;
+  background-color: var(--color-LightGrey);
+  color: var(--color-DarkNavy);
+  font-size: 1rem;
+  letter-spacing: normal;
+  transition:
+    color 0.3s ease-in-out,
+    background 0.3s ease-in-out;
+}
+
+body.light {
+  background-image: url("../public/pattern-background-mobile-light.svg");
+}
+
+body.dark {
+  color: var(--color-PureWhite);
+  background-color: var(--color-DarkNavy);
+  background-image: url("../public/pattern-background-mobile-dark.svg");
+}
+
+@media (min-width: 768px) {
+  body.light {
+    background-image: url("../public/pattern-background-tablet-light.svg");
+  }
+
+  body.dark {
+    background-image: url("../public/pattern-background-tablet-dark.svg");
+  }
+}
+
+@media (min-width: 1024px) {
+  body.light {
+    background-image: url("../public/pattern-background-desktop-light.svg");
+  }
+
+  body.dark {
+    background-image: url("../public/pattern-background-desktop-dark.svg");
   }
 }
